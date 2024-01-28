@@ -12,7 +12,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-      $schedule->command('poll:stories')->twiceDaily(1, 13)->appendOutputTo('polls.log');
+      $schedule->command('spool:stories')->twiceDaily(1, 13)->appendOutputTo('spools.log');
     }
 
     /**

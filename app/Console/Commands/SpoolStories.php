@@ -2,19 +2,18 @@
 
 namespace App\Console\Commands;
 
-use App\Jobs\ProcessPoll;
 use App\Jobs\ProcessStory;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
 
-class PollStories extends Command
+class SpoolStories extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'poll:stories';
+    protected $signature = 'spool:stories';
 
     /**
      * The console command description.

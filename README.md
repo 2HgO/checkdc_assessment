@@ -11,6 +11,10 @@ to run the application, create a `.env` file using the [sample env file](.env.ex
 ```bash
 make dev
 ```
+this runs 3 recipes
+- app: to start up the http server
+- queue_worker: to start up queue workers that process the jobs that process the different item types
+- scheduler: that handles the twice daily data spooling
 
 ## Docs
 To view the documentation for this application's endpoints, import the [documentation file](docs/api.raml) into your documentation tool of choice
