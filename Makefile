@@ -9,6 +9,7 @@ $(error composer not installed, please install composer v2.0.0+)
 endif
 
 dev: deps
+	@php artisan migrate
 	@$(MAKE) -j3 app scheduler queue_worker
 
 .PHONY: deps
