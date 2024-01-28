@@ -11,23 +11,48 @@ types:
     properties:
       id: integer
       by: string
+      descendants: integer
+      kids: integer[]
+      score: integer
+      time: integer
+      title: string
+      url?: string
+      text?: string
+      category: string,
   Poll:
     properties:
       id: integer
       by: string
+      kids: integer[],
+      descendants: integer,
+      parts: integer[],
+      score: integer,
+      text: string,
+      time: integer,
+      title: string,
   Comment:
     properties:
       id: integer
       by: string
+      kids: integer[],
+      parent: integer,
+      text: string,
+      time: integer,
   PollOption:
     properties:
       id: integer
       by: string
+      poll: integer,
+      score: integer,
+      text: string,
+      time: integer,
   Author:
     properties:
       id: string
       about?: string
       created: integer
+      karma: integer
+      submitted: integer[]
   PaginatedLinks:
     properties:
       first: string
