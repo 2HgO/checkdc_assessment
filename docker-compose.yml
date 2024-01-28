@@ -1,0 +1,22 @@
+version: '3.9'
+
+services:
+  docs:
+    image: gcr.io/api-console-a6952/app:0.1.0
+    volumes:
+      - ${PWD}/docs:/app/api
+    ports:
+      - 8080:8080
+    environment:
+      - API_PROJECT=api.raml
+      - API_TYPE=RAML 1.0
+      - API_MIME=application/raml
+  db:
+    image: mysql:8
+    restart: always
+    container_name: checkdc_db
+    ports:
+      - '3307:3306'
+    environment:
+      MYSQL_DATABASE: checkdc_assessment
+      MYSQL_ALLOW_EMPTY_PASSWORD: true

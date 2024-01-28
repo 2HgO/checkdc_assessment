@@ -1,0 +1,181 @@
+#%RAML 1.0
+
+title: CheckDC Assessment
+protocols: [ HTTP ]
+mediaType: application/json
+baseUri: http://localhost:8000/api
+version: v1
+
+types:
+  Story:
+    properties:
+      id: integer
+      by: string
+  Poll:
+    properties:
+      id: integer
+      by: string
+  Comment:
+    properties:
+      id: integer
+      by: string
+  PollOption:
+    properties:
+      id: integer
+      by: string
+  Author:
+    properties:
+      id: string
+      about?: string
+      created: integer
+  PaginatedLinks:
+    properties:
+      first: string
+      last: string
+      prev?: string
+      next?: string
+  PaginationMeta:
+    properties: 
+      current_page: integer
+      from: integer
+      last_page: integer
+      links:
+        type: array
+        items:
+          properties:
+            url?: string
+            label: string
+            active: boolean
+      path: string
+      per_page: integer
+      to: integer
+      total: integer
+  Filter:
+    properties:
+      q?: string
+      page:
+        required: false
+        type: integer
+        minimum: 1
+        default: 1
+      limit:
+        required: false
+        type: integer
+        minimum: 0
+        default: 20
+
+/stories:
+  get:
+    displayName: List Stories
+    queryParameters: Filter
+    responses:
+      200:
+        body:
+          application/json:
+            properties: 
+              data: Story[]
+              links: PaginatedLinks
+              meta: PaginationMeta
+  /{storyID}:
+    uriParameters: 
+      storyID: 
+        displayName: Story ID
+        description: id of a single story
+    get:
+      displayName: Get Story
+      description: get a single story identified by it's id
+      responses: 
+        200:
+          body: Story
+/comments:
+  get:
+    displayName: List Comments
+    queryParameters: Filter
+    responses:
+      200:
+        body:
+          application/json:
+            properties: 
+              data: Comment[]
+              links: PaginatedLinks
+              meta: PaginationMeta
+  /{commentID}:
+    uriParameters: 
+      commentID: 
+        displayName: Comment ID
+        description: id of a single comment
+    get:
+      displayName: Get Comment
+      description: get a single comment identified by it's id
+      responses: 
+        200:
+          body: Comment
+/authors:
+  get:
+    displayName: List Authors
+    queryParameters: Filter
+    responses:
+      200:
+        body:
+          application/json:
+            properties: 
+              data: Author[]
+              links: PaginatedLinks
+              meta: PaginationMeta
+  /{authorID}:
+    uriParameters: 
+      authorID: 
+        displayName: Author ID
+        description: id of a single author
+    get:
+      displayName: Get Author
+      description: get a single author identified by it's id
+      responses: 
+        200:
+          body: Author
+/polls:
+  get:
+    displayName: List Polls
+    queryParameters: Filter
+    responses:
+      200:
+        body:
+          application/json:
+            properties: 
+              data: Poll[]
+              links: PaginatedLinks
+              meta: PaginationMeta
+  /{pollID}:
+    uriParameters: 
+      pollID: 
+        displayName: Poll ID
+        description: id of a single poll
+    get:
+      displayName: Get Poll
+      description: get a single poll identified by it's id
+      responses: 
+        200:
+          body: Poll
+/pollOptions:
+  get:
+    displayName: List PollOptions
+    queryParameters: Filter
+    responses:
+      200:
+        body:
+          application/json:
+            properties: 
+              data: PollOption[]
+              links: PaginatedLinks
+              meta: PaginationMeta
+  /{pollOptionID}:
+    uriParameters: 
+      pollOptionID: 
+        displayName: PollOption ID
+        description: id of a single pollOption
+    get:
+      displayName: Get Poll Option
+      description: get a single pollOption identified by it's id
+      responses: 
+        200:
+          body: PollOption
